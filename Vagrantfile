@@ -53,4 +53,9 @@ Vagrant.configure("2") do |config|
         sh.path = ".provision/wordpress.sh"
         sh.args = [THEME_NAME, THEME_NICENAME, DB_NAME, DB_USERNAME, HOST,BLOG_TITLE, BLOG_ADMIN_LOGIN, BLOG_ADMIN_PASSWORD, BLOG_ADMIN_EMAIL, WP_LOCALE]
     end
+
+    config.vm.provision "shell" do |sh|
+        sh.path = ".provision/install.sh"
+        sh.args = [THEME_NAME]
+    end
 end
