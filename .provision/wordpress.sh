@@ -39,7 +39,7 @@ chmod 0775 /var/www/wordpress/
 echo "Apache2 configuration"
 sudo rm -rf /etc/apache2/sites-enabled/*
 sudo rm -rf /etc/apache2/sites-available/*
-sudo cp /srv/theme/.provision/wordpress.conf /etc/apache2/sites-available/wordpress.conf
+sudo cp -f /srv/theme/.provision/wordpress.conf /etc/apache2/sites-available/wordpress.conf
 
 sed -i "s/#host#/${HOST}/" /etc/apache2/sites-available/wordpress.conf
 
@@ -72,6 +72,8 @@ cp /var/www/wordpress/wp-config-sample.php /var/www/wordpress/wp-config.php
 sed -i "s/database_name_here/${DB_NAME}/" /var/www/wordpress/wp-config.php
 sed -i "s/username_here/${DB_USERNAME}/" /var/www/wordpress/wp-config.php
 sed -i "s/password_here/${DB_PASSWORD}/" /var/www/wordpress/wp-config.php
+
+cp -f /srv/theme/.provision/.htaccess.template /var/www/wordpress/.htaccess
 #
 # END Configure wordpress
 # Install wordpress
@@ -86,6 +88,10 @@ sudo -u vagrant -i -- wp core install --url="${HOST}" \
                 --skip-email
 
 sudo chown -R www-data:www-data /var/www/wordpress/
+sudo find /var/www/wordpress/ -type f -exec chmod 664 {} + 
+
+sudo -u vagrant -i -- wp rewrite structure '/%year%/%monthnum%/%postname%/' \
+                        --path="/var/www/wordpress/" 
 #
 # END Install wordpress
 # Configure theme

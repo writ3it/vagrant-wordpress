@@ -30,8 +30,8 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell", privileged: true, path:  ".provision/preinstallation.sh"
 
     config.vm.network "private_network", ip: HOST
-    config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
-    config.vm.usable_port_range = 8080..8090
+    config.vm.network "forwarded_port", guest: 80, host: 80, auto_correct: true
+    config.vm.usable_port_range = 80..90
 
     config.vm.synced_folder ".", "/srv/theme/"
 
