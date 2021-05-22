@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=$1
+VERSION="7.4"
 
 apt-get -y install php${VERSION} \
                 php${VERSION}-common \

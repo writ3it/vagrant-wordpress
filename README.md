@@ -1,6 +1,18 @@
 # vagrant-wordpress
 Repository template for the wordpress theme. All in one using Vagrant!
 
+**What is inside?**
+
+- latest mariadb (mysql)
+- latest php7.4
+- latest wordpress
+- default wordpress database
+
+**Requirements:**
+- internet connection
+- virtualbox
+- vagrant
+
 
 ## Quick Start
 
@@ -27,3 +39,10 @@ $ vagrant up
 ```
 
 ##### Windows
+
+
+## Tips 
+
+##### Access & Error log
+
+See `/var/log/apache2`.

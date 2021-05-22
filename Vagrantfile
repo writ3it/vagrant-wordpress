@@ -5,8 +5,6 @@
 # Set your theme name
 THEME_NAME="your_theme"
 THEME_NICENAME="Your theme"
-# If you need, change php version. Available: 7.4, 8.0
-PHP_VERSION="7.4"
 
 # Blog
 
@@ -35,7 +33,7 @@ Vagrant.configure("2") do |config|
     config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
     config.vm.usable_port_range = 8080..8090
 
-    config.vm.synced_folder ".", "/srv/"+THEME_NAME
+    config.vm.synced_folder ".", "/srv/theme/"
 
     config.vm.provision "shell" do |sh|
         sh.path =  ".provision/database.sh"
@@ -46,7 +44,6 @@ Vagrant.configure("2") do |config|
     config.vm.provision "shell" do |sh|
         sh.path =  ".provision/php.sh"
         sh.privileged = true
-        sh.args = [PHP_VERSION]
     end
 
     config.vm.provision "shell", privileged: true, path:  ".provision/php.sh"

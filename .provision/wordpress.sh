@@ -39,7 +39,7 @@ chmod 0775 /var/www/wordpress/
 echo "Apache2 configuration"
 sudo rm -rf /etc/apache2/sites-enabled/*
 sudo rm -rf /etc/apache2/sites-available/*
-sudo cp /srv/$THEME_NAME/.provision/wordpress.conf /etc/apache2/sites-available/wordpress.conf
+sudo cp /srv/theme/.provision/wordpress.conf /etc/apache2/sites-available/wordpress.conf
 sudo ln -s /etc/apache2/sites-available/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
 sudo service apache2 restart
 #
@@ -88,10 +88,10 @@ sudo chown -R www-data:www-data /var/www/wordpress/
 # Configure theme
 #
 echo "Theme configuration"
-ln -s /srv/$THEME_NAME /var/www/wordpress/wp-content/themes/$THEME_NAME
+ln -s /srv/theme /var/www/wordpress/wp-content/themes/$THEME_NAME
 cp /var/www/wordpress/wp-content/themes/$THEME_NAME/.provision/style.template.css \
     /var/www/wordpress/wp-content/themes/$THEME_NAME//style.css
-    
+
 sed -i "s/#theme_nicename#/${THEME_NICENAME}/" /var/www/wordpress/wp-content/themes/$THEME_NAME/style.css
 sed -i "s/#theme_name#/${THEME_NAME}/" /var/www/wordpress/wp-content/themes/$THEME_NAME/style.css
 
