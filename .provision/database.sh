@@ -1,6 +1,8 @@
 #!/bin/bash
+
 DB_PASSWORD=`date +%s | sha256sum | base64 | head -c 32 ; echo`
 echo $DB_PASSWORD > ~/.dbpassword
+
 DB_NAME=$1
 DB_USERNAME=$2
 

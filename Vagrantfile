@@ -4,6 +4,7 @@
 
 # Set your theme name
 THEME_NAME="your_theme"
+THEME_NICENAME="Your theme"
 # If you need, change php version. Available: 7.4, 8.0
 PHP_VERSION="7.4"
 
@@ -53,8 +54,6 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "shell" do |sh|
         sh.path = ".provision/wordpress.sh"
-        sh.args = [THEME_NAME, DB_NAME, DB_USERNAME, HOST,BLOG_TITLE, BLOG_ADMIN_LOGIN, BLOG_ADMIN_PASSWORD, BLOG_ADMIN_EMAIL, WP_LOCALE]
+        sh.args = [THEME_NAME, THEME_NICENAME, DB_NAME, DB_USERNAME, HOST,BLOG_TITLE, BLOG_ADMIN_LOGIN, BLOG_ADMIN_PASSWORD, BLOG_ADMIN_EMAIL, WP_LOCALE]
     end
-
-    config.vm.provision "shell", path: ".provision/configure_theme.sh"
 end
