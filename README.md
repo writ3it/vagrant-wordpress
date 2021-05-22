@@ -46,3 +46,6 @@ $ vagrant up
 ##### Access & Error log
 
 See `/var/log/apache2`.
+
+
+##### Customize Vagrant configuration

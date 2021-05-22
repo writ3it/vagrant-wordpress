@@ -40,6 +40,9 @@ echo "Apache2 configuration"
 sudo rm -rf /etc/apache2/sites-enabled/*
 sudo rm -rf /etc/apache2/sites-available/*
 sudo cp /srv/theme/.provision/wordpress.conf /etc/apache2/sites-available/wordpress.conf
+
+sed -i "s/#host#/${HOST}/" /etc/apache2/sites-available/wordpress.conf
+
 sudo ln -s /etc/apache2/sites-available/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
 sudo service apache2 restart
 #
