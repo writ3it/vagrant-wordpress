@@ -98,8 +98,20 @@ sudo -u vagrant -i -- wp rewrite structure '/%year%/%monthnum%/%postname%/' \
 #
 echo "Theme configuration"
 ln -s /srv/theme /var/www/wordpress/wp-content/themes/$THEME_NAME
-cp /var/www/wordpress/wp-content/themes/$THEME_NAME/.provision/style.template.css \
+
+if [ ! -f /var/www/wordpress/wp-content/themes/$THEME_NAME//style.css ]; 
+then
+    echo "Generating style.css with template"
+    cp /var/www/wordpress/wp-content/themes/$THEME_NAME/.provision/style.template.css \
     /var/www/wordpress/wp-content/themes/$THEME_NAME//style.css
+else
+    echo "Merging style.css with template"
+    sudo php -r "echo preg_replace('/(\/\*\!(.*?)\*\/$)/ims','',file_get_contents('/var/www/wordpress/wp-content/themes/${THEME_NAME}/style.css'));" > /tmp/style.css
+
+    cat /var/www/wordpress/wp-content/themes/$THEME_NAME/.provision/style.template.css \
+    /tmp/style.css > /var/www/wordpress/wp-content/themes/$THEME_NAME/style.css
+    rm /tmp/style.css
+fi
 
 sed -i "s/#theme_nicename#/${THEME_NICENAME}/" /var/www/wordpress/wp-content/themes/$THEME_NAME/style.css
 sed -i "s/#theme_name#/${THEME_NAME}/" /var/www/wordpress/wp-content/themes/$THEME_NAME/style.css
