@@ -1,4 +1,5 @@
 # vagrant-wordpress
+
 Repository template for the wordpress theme. All in one using Vagrant!
 
 **What is inside?**
@@ -31,9 +32,9 @@ $ sudo apt-get install virtualbox vagrant
 2. [Download & install Vagrant.](https://www.vagrantup.com/downloads)
 
 
-#### Step 2. Create own repo using this template
+#### Step 2. Use template to create own repository
 
-By 
+or clone it.
 
 
 #### Step 2. Run Vagrant!
@@ -50,11 +51,12 @@ If you see "Hello wordpress!", it means success!
 
 #### Step 4. Log into [wp-admin](http://10.10.10.10/wp-admin/).
 
-Login: admin (BLOG_ADMIN_LOGIN)
-Password: admin (BLOG_ADMIN_PASSWORD)
+- Login: admin (BLOG_ADMIN_LOGIN)
+- Password: admin (BLOG_ADMIN_PASSWORD)
 
-##### Windows
+#### Step 5. Develop your theme.
 
+Repository is mapped to wordpress/wp-content/themes/${THEME_NAME}/. Thats all!
 
 ## Tips 
 
@@ -83,7 +85,3 @@ Configuration variables requires rebuild of the Vagrant virtual machine. The sim
 $ vagrant reload
 $ vagrant up --provision
 ```
-
-## Locale list
-
-
