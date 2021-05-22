@@ -55,6 +55,7 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.provision "shell" do |sh|
+        sh.privileged = false
         sh.path = ".provision/install.sh"
         sh.args = [THEME_NAME]
     end
